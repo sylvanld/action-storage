@@ -30,7 +30,7 @@ runs:
       shell: bash
       run: |
         (git branch --remote | grep origin/${{ inputs.storage-branch }} >/dev/null && (git checkout ${{ inputs.storage-branch }} && echo "Checked out storage branch!" || echo "Unable to checkout storage branch")) \
-          || (./create-storage-branch.sh ${{ inputs.storage-branch }} && echo "Storage branch created!")
+          || (${{ github.action_path }}/create-storage-branch.sh ${{ inputs.storage-branch }} && echo "Storage branch created!")
           
     - name: Copy tmp file to destination file
       shell: bash
