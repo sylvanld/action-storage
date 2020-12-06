@@ -40,4 +40,4 @@ runs:
       run: |
         folder=$(dirname ${{inputs.dst}})
         mkdir -p $folder || echo Unable to create destination folder
-        mv /tmp/artifacts ${{inputs.dst}}
+        mv /tmp/artifact ${{inputs.dst}}
