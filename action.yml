@@ -14,13 +14,26 @@ inputs:
     required: true
 
 runs:
+  
   using: "composite"
   
   steps: 
     - shell: bash
-      run: echo Save file ${{ inputs.src }} to ${{ inputs.dst }} on branch ${{ inputs.storage_branch }}.
-    
-    - shell: bash
-      run: |
-        (git branch --remote | grep origin/${{ inputs.storage_branch }} >1 && echo storage branch found) || ./create-storage-branch.sh ${{ inputs.storage_branch }}
+      run: echo Save file ${{ inputs.src }} to ${{ inputs.dst }} on branch ${{ inputs.storage-branch }}.
       
+    - name: Create temporary copy of file to save
+      shell: bash
+      run: |
+        cp -r ${{inputs.src}} /tmp/artifact
+    
+    - name: Create storage branch if not exists, and checkout
+      shell: bash
+      run: |
+        (git branch --remote | grep origin/${{ inputs.storage-branch }} >/dev/null && (git checkout ${{ inputs.storage-branch }} && echo "Checked out storage branch!" || echo "Unable to checkout storage branch")) \
+          || (./create-storage-branch.sh ${{ inputs.storage-branch }} && echo "Storage branch created!")
+          
+    - name: Copy tmp file to destination file
+      run: |
+        folder=$(dirname ${{inputs.dst}}
+        mkdir -p $folder || echo Unable to create destination folder
+        mv /tmp/artifacts ${{inputs.dst}}
