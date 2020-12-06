@@ -6,18 +6,24 @@ inputs:
     description: 'Name of the branch that will be used for storage'
     required: false
     default: 'gh-storage'
-  original-path:
-    description: 'Path to the file that will be saved'
+  artifacts:
+    description: 'List of files and destination in storage with sturcture [{src: "...", dst: "..."}]'
     required: true
-  storage-path:
-    description: 'Relative path where the file must be stored in target branch'
-    required: true
+    default: []
 
 runs:
   using: "composite"
+  
+  strategy:
+    matrix:
+      artifact: ${{inputs.artifacts}} 
+  
   steps: 
     - shell: bash
-      run: echo Save file ${{ inputs.original_path }} to ${{ inputs.storage_path }} on branch ${{ inputs.storage_branch }}.
+      run: echo Save file ${file_src} to ${{ file_dst }} on branch ${{ inputs.storage_branch }}.
+      env:
+        file_src: ${{matrix.artifact.src}}
+        file_dst: ${{matrix.artifact.dst}}
     
     - shell: bash
       run: |
