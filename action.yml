@@ -33,6 +33,7 @@ runs:
           || (./create-storage-branch.sh ${{ inputs.storage-branch }} && echo "Storage branch created!")
           
     - name: Copy tmp file to destination file
+      shell: bash
       run: |
         folder=$(dirname ${{inputs.dst}}
         mkdir -p $folder || echo Unable to create destination folder
