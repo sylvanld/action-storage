@@ -37,6 +37,6 @@ runs:
     - name: Copy tmp file to destination file
       shell: bash
       run: |
-        folder=$(dirname ${{inputs.dst}}
+        folder=$(dirname ${{inputs.dst}})
         mkdir -p $folder || echo Unable to create destination folder
         mv /tmp/artifacts ${{inputs.dst}}
