@@ -43,4 +43,4 @@ runs:
         mv /tmp/artifact ${{inputs.dst}}
         git add ${{inputs.dst}}
         git commit -m "Update file"
-        git push origin ${{inputs.src}}
+        git push origin ${{inputs.dst}}
