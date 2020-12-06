@@ -1,0 +1,25 @@
+name: 'Static files storage'
+description: 'Saves files (e.g: badges) from GitHub actions on a dedicated branch to serve a static storage.'
+
+inputs:
+  storage_branch:
+    description: 'Name of the branch that will be used for storage'
+    required: false
+    default: 'gh-storage'
+  original_path:
+    description: 'Path to the file that will be saved'
+    required: true
+  storage_path:
+    description: 'Relative path where the file must be stored in target branch'
+    required: true
+
+runs:
+  using: "composite"
+  steps: 
+    - shell: bash
+      run: echo Save file ${{ inputs.original_path }} to ${{ inputs.storage_path }} on branch ${{ inputs.storage_branch }}.
+    
+    - shell: bash
+      run: |
+        (git branch --remote | grep origin/${{ inputs.storage_branch }} >1 && echo storage branch found) || echo storage branch not found
+      
