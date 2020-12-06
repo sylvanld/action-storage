@@ -31,6 +31,7 @@ runs:
     - name: Create storage branch if not exists, and checkout
       shell: bash
       run: |
+        git fetch --all
         (git branch --remote | grep origin/${{ inputs.storage-branch }} >/dev/null && (git checkout ${{ inputs.storage-branch }} && echo "Checked out storage branch!" || echo "Unable to checkout storage branch")) \
           || (${{ github.action_path }}/scripts/create-storage-branch.sh ${{ inputs.storage-branch }} && echo "Storage branch created!")
           
