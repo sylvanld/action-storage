@@ -22,5 +22,5 @@ runs:
     
     - shell: bash
       run: |
-        (git branch --remote | grep origin/${{ inputs.storage_branch }} >1 && echo storage branch found) || echo storage branch not found
+        (git branch --remote | grep origin/${{ inputs.storage_branch }} >1 && echo storage branch found) || ./create-storage-branch.sh ${{ inputs.storage_branch }}
       
