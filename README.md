@@ -1,5 +1,8 @@
 # action-storage
-Store files on an orphan branch of a repo dedicated for static storage
+
+> Store files on an orphan branch of a repo dedicated for static storage
+
+## Example usage
 
 ```yaml
       # Generate an asset in your job. E.G: Download a badge image from shields.io
@@ -13,3 +16,11 @@ Store files on an orphan branch of a repo dedicated for static storage
           src: license-MIT-blue
           dst: legal/LICENSE
 ```
+
+## Parameters
+
+|Name|Function|
+|-|-|
+|src|Relative or absolute path to the file that must be saved in storage-branch|
+|dst|Path relative to storage branch root where the file (or folder) will be stored. If destination folder doesn't exists it is automatically created.|
+|storage-branch|Name of the branch used as storage branch (defaults to 'gh-storage', you can have multiple in differents jobs).|
