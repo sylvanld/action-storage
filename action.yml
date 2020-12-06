@@ -3,27 +3,22 @@ description: 'Saves files (e.g: badges) from GitHub actions on a dedicated branc
 
 inputs:
   storage-branch:
-    description: 'Name of the branch that will be used for storage'
+    description: "Name of the branch that will be used for storage"
     required: false
     default: 'gh-storage'
-  artifacts:
-    description: 'List of files and destination in storage with sturcture [{src: "...", dst: "..."}]'
+  src:
+    description: "Path to the file that will be saved"
     required: true
-    default: []
+  dst:
+    description: "Path in storage branch where the file will be saved"
+    required: true
 
 runs:
   using: "composite"
   
-  strategy:
-    matrix:
-      artifact: ${{inputs.artifacts}} 
-  
   steps: 
     - shell: bash
-      run: echo Save file ${file_src} to ${{ file_dst }} on branch ${{ inputs.storage_branch }}.
-      env:
-        file_src: ${{matrix.artifact.src}}
-        file_dst: ${{matrix.artifact.dst}}
+      run: echo Save file ${{ inputs.src }} to ${{ inputs.dst }} on branch ${{ inputs.storage_branch }}.
     
     - shell: bash
       run: |
