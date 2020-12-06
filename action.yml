@@ -19,7 +19,9 @@ runs:
   
   steps: 
     - shell: bash
-      run: echo Save file ${{ inputs.src }} to ${{ inputs.dst }} on branch ${{ inputs.storage-branch }}.
+      run: |
+        git config user.email storage@github.action
+        git config user.name "GitHub storage action"
       
     - name: Create temporary copy of file to save
       shell: bash
