@@ -26,4 +26,4 @@ https://raw.githubusercontent.com/${github_project}/random-storage/README.md
 EOF
 
 # Create initial commit and push the new branch to remote
-git add README.md && git commit -m "Create storage branch" && git push -u origin $1
+git add . && git commit -m "Create storage branch" && git push -u origin $1
