@@ -12,6 +12,10 @@ inputs:
   dst:
     description: "Path in storage branch where the file will be saved"
     required: true
+  comment:
+    description: "Commit message associated with this modification in storage branch"
+    required: false
+    default: Update a file
 
 runs:
   
@@ -23,4 +27,5 @@ runs:
       env:
         src: "${{inputs.src}}"
         dst: "${{inputs.dst}}"
+        comment: "${{inputs.comment}}"
         storage_branch: "${{inputs.storage-branch}}"
