@@ -66,6 +66,7 @@ checkout-storage-branch(){
 
 
 add-to-storage(){
+	echo "Adding to storage..." > /dev/stderr
 	storage_local_path="$1"
 	abs_dst_path=$storage_local_path/$dst
 	mkdir -p $(dirname $abs_dst_path)
