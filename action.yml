@@ -3,7 +3,7 @@ description: 'Saves files (e.g: badges) from GitHub actions on a dedicated branc
 
 branding:
   icon: "box"
-  color: "orangered"
+  color: "gray-dark"
 
 inputs:
   storage-branch:
