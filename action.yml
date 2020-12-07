@@ -42,5 +42,4 @@ runs:
         mkdir -p $folder || echo Unable to create destination folder
         mv /tmp/artifact ${{inputs.dst}}
         git add ${{inputs.dst}}
-        git commit -m "Update file"
-        git push origin ${{ inputs.storage-branch }}
+        git commit -m "Update file" && git push origin ${{ inputs.storage-branch }} || echo Nothing changes...
