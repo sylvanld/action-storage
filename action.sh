@@ -67,7 +67,7 @@ add-to-storage(){
 
 	cd $storage_local_path
 	git add .
-	git commit -m "$message" ; git push origin $storage_branch || echo "No changes in storage"
+	git commit -m "$comment" ; git push origin $storage_branch || echo "No changes in storage"
 	cd -
 }
 
