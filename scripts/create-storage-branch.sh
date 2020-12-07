@@ -2,7 +2,7 @@
 git checkout --orphan $1
 
 # Remove all files on orphan branch (except .git/ folder)
-ls -a | grep -v .git | xargs rm -r
+ls -A -I .git | xargs rm -r
 
 # Add a default message to document the purpose of this branch
 cat > README.md <<EOF
