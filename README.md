@@ -1,4 +1,4 @@
-# action-storage
+# File-storage action
 
 > Store files on an orphan branch of a repo dedicated for static storage
 
@@ -27,3 +27,9 @@ Badge generated in this action can then be referenced from your README or anywhe
 |src|Relative or absolute path to the file that must be saved in storage-branch|
 |dst|Path relative to storage branch root where the file (or folder) will be stored. If destination folder doesn't exists it is automatically created.|
 |storage-branch|Name of the branch used as storage branch (defaults to 'gh-storage', you can have multiple in differents jobs).|
+
+## Roadmap
+
+- Add ability to specify a commit message
+- Fix: pipeline crash when no changes are detected (uploaded file may have the same content)
+- Automated tests
