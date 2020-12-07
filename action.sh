@@ -54,6 +54,10 @@ checkout-storage-branch(){
 
 	# Go back to last working directory and return reference of the created repo
 	cd -
+
+	# copy original config to get auth credential
+	cp .git/config $branch_path/.git/config
+	
 	echo $branch_path
 }
 
