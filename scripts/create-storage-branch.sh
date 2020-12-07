@@ -2,7 +2,9 @@
 github_project=$(git remote get-url origin | sed 's/https:\/\/[a-zA-Z\.]*\/\([a-zA-Z0-9\.\/\-]*\)\.git/\1/g')
 
 # Create a new orphan branch unrelated history
+git stash
 git checkout --orphan $1
+git stash pop
 
 # Remove all files on orphan branch (except .git/ folder)
 ls -A -I .git | xargs rm -r
