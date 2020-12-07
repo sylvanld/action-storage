@@ -73,8 +73,8 @@ add-to-storage(){
 
 main(){
 	# Configure a generic identity for the action
-	#git config user.email storage@github.action
-	#git config user.name "GitHub storage action"
+	git config user.email storage@github.action
+	git config user.name "GitHub storage action"
 	# Create checkout storage branch in another clone of the repo
 	checkout-storage-branch storage_local_path
 	add-to-storage $storage_local_path
