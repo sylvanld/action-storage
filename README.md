@@ -17,6 +17,9 @@
           dst: legal/LICENSE
 ```
 
+Badge generated in this action can then be referenced from your README or anywhere else...
+
+
 ## Parameters
 
 |Name|Function|
