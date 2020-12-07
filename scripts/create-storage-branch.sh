@@ -19,6 +19,10 @@ Resulting files can then be referenced in
 * issues
 * pull requests
 * or anywhere else.
+
+Here is for example the link to the raw README.md file :
+
+https://raw.githubusercontent.com/${github_project}/random-storage/README.md
 EOF
 
 # Create initial commit and push the new branch to remote
