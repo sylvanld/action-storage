@@ -19,27 +19,8 @@ runs:
   
   steps: 
     - shell: bash
-      run: |
-        git config user.email storage@github.action
-        git config user.name "GitHub storage action"
-      
-    - name: Create temporary copy of file to save
-      shell: bash
-      run: |
-        cp -r ${{inputs.src}} /tmp/artifact
-    
-    - name: Create storage branch if not exists, and checkout
-      shell: bash
-      run: |
-        git fetch --all
-        (git branch --remote | grep origin/${{ inputs.storage-branch }} >/dev/null && (git checkout ${{ inputs.storage-branch }} && echo "Checked out storage branch!" || echo "Unable to checkout storage branch")) \
-          || (${{ github.action_path }}/scripts/create-storage-branch.sh ${{ inputs.storage-branch }} && echo "Storage branch created!")
-          
-    - name: Copy tmp file to destination file
-      shell: bash
-      run: |
-        folder=$(dirname ${{inputs.dst}})
-        mkdir -p $folder || echo Unable to create destination folder
-        mv /tmp/artifact ${{inputs.dst}}
-        git add ${{inputs.dst}}
-        git commit -m "Update file" && git push origin ${{ inputs.storage-branch }} || echo Nothing changes...
+      run: ${{ github.action_path }}/action.sh
+      env:
+        src: "${{inputs.src}}"
+        dst: "${{inputs.dst}}"
+        storage_branch: "${{inputs.storage-branch}}"
