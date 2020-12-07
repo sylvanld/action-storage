@@ -1,10 +1,3 @@
-set-git-identity(){
-	# Configure a generic identity for the action
-	git config user.email storage@github.action
-	git config user.name "GitHub storage action"
-}
-
-
 initialize-branch-content(){
 	# Extract project name from remote url
 	github_project=$(git remote get-url origin | sed 's/https:\/\/[a-zA-Z\.]*\/\([a-zA-Z0-9\.\/\-]*\)\.git/\1/g')
@@ -73,7 +66,6 @@ add-to-storage(){
 	cp -r $src $abs_dst_path
 
 	cd $storage_local_path
-	set-git-identity
 	git add .
 	git commit -m "$message" ; git push origin $storage_branch || echo "No changes in storage"
 	cd -
@@ -81,6 +73,8 @@ add-to-storage(){
 
 
 main(){
+	git config --global user.email storage@github.action
+	git config --global user.name "GitHub storage action"
 	# Create checkout storage branch in another clone of the repo
 	checkout-storage-branch storage_local_path
 	add-to-storage $storage_local_path
