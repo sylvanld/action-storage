@@ -1,6 +1,9 @@
 name: 'Static files storage'
 description: 'Saves files (e.g: badges) from GitHub actions on a dedicated branch to serve a static storage.'
-icon: box
+
+branding:
+  icon: "box"
+  color: "orangered"
 
 inputs:
   storage-branch:
