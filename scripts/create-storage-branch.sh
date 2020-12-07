@@ -1,5 +1,5 @@
 # Extract project name from remote url
-github_project=$(sed 's/https:\/\/[a-zA-Z\.]*\/\([a-zA-Z0-9\.\/\-]*\)\.git/\1/g')
+github_project=$(git remote get-url origin | sed 's/https:\/\/[a-zA-Z\.]*\/\([a-zA-Z0-9\.\/\-]*\)\.git/\1/g')
 
 # Create a new orphan branch unrelated history
 git checkout --orphan $1
